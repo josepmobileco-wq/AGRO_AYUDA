@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Agro Ayuda - Mi carrito</title>
+
+    <style>
+
+        /* =====================================
+           CONFIGURACIÓN GENERAL
+        ===================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #f4faf6;
+            color: #254632;
+        }
+
+
+        /* =====================================
+           BARRA SUPERIOR
+        ===================================== */
+
+        .navbar {
+            height: px;
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 35px;
+
+            border-bottom: 1px solid #e5eee8;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            color: #159447;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .sidebar .logo img {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+        
+
+        .logo-icon {
+            font-size: 10px;
+        }
+
+        .search {
+            width: 330px;
+
+            border: none;
+            outline: none;
+
+            background: #f3f6f4;
+
+            padding: 10px 18px;
+
+            border-radius: 20px;
+
+            color: #555;
+        }
+
+        .right-nav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .nav-icon {
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .user {
+            width: 32px;
+            height: 32px;
+
+            border-radius: 50%;
+
+            background: #d9eee0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        /* =====================================
+           CONTENEDOR
+        ===================================== */
+
+        .container {
+            width: 90%;
+            max-width: 1050px;
+
+            margin: 30px auto;
+        }
+
+
+        /* =====================================
+           ENCABEZADO
+        ===================================== */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            font-size: 25px;
+            color: #23452f;
+        }
+
+        .header a {
+            color: #159447;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+
+        /* =====================================
+           DISTRIBUCIÓN
+        ===================================== */
+
+        .content {
+            display: grid;
+
+            grid-template-columns: 1fr 300px;
+
+            gap: 20px;
+        }
+
+
+        /* =====================================
+           TARJETA DEL CARRITO
+        ===================================== */
+
+        .cart {
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            border: 1px solid #e5eee8;
+        }
+
+
+        /* =====================================
+           PRODUCTO
+        ===================================== */
+
+        .product {
+            display: flex;
+            align-items: center;
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid #eeeeee;
+
+            gap: 15px;
+        }
+
+        .product:last-child {
+            border-bottom: none;
+        }
+
+
+        /* =====================================
+           IMAGEN DEL PRODUCTO
+        ===================================== */
+
+        .product-img {
+            width: 70px;
+            height: 70px;
+
+            border-radius: 10px;
+
+            object-fit: cover;
+
+            background: #eef7f0;
+        }
+
+
+        /* =====================================
+           INFORMACIÓN
+        ===================================== */
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-size: 14px;
+            font-weight: bold;
+
+            color: #23452f;
+
+            margin-bottom: 5px;
+        }
+
+        .product-unit {
+            font-size: 11px;
+            color: #888;
+
+            margin-bottom: 6px;
+        }
+
+        .product-price {
+            font-size: 13px;
+            font-weight: bold;
+
+            color: #159447;
+        }
+
+
+        /* =====================================
+           CANTIDAD
+        ===================================== */
+
+        .quantity {
+            display: flex;
+            align-items: center;
+
+            border: 1px solid #dfe7e1;
+
+            border-radius: 6px;
+
+            overflow: hidden;
+        }
+
+        .quantity button {
+            width: 27px;
+            height: 27px;
+
+            border: none;
+
+            background: white;
+
+            cursor: pointer;
+
+            color: #159447;
+
+            font-size: 15px;
+        }
+
+        .quantity button:hover {
+            background: #eef8f1;
+        }
+
+        .quantity span {
+            width: 28px;
+
+            text-align: center;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================
+           ELIMINAR
+        ===================================== */
+
+        .delete {
+            border: none;
+
+            background: transparent;
+
+            color: #8c9990;
+
+            cursor: pointer;
+
+            font-size: 15px;
+        }
+
+        .delete:hover {
+            color: #e54848;
+        }
+
+
+        /* =====================================
+           RESUMEN DE COMPRA
+        ===================================== */
+
+        .summary {
+            background: white;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            height: fit-content;
+
+            border: 1px solid #e5eee8;
+        }
+
+        .summary h2 {
+            font-size: 17px;
+
+            margin-bottom: 20px;
+
+            color: #23452f;
+        }
+
+        .row {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 13px;
+
+            font-size: 12px;
+
+            color: #777;
+        }
+
+        .row.total {
+            border-top: 1px solid #eeeeee;
+
+            padding-top: 15px;
+
+            margin-top: 15px;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            color: #23452f;
+        }
+
+        .total-price {
+            color: #159447;
+        }
+
+
+        /* =====================================
+           BOTÓN COMPRAR
+        ===================================== */
+
+        .checkout {
+            width: 100%;
+
+            border: none;
+
+            background: #159447;
+
+            color: white;
+
+            padding: 12px;
+
+            border-radius: 7px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            margin-top: 15px;
+        }
+
+        .checkout:hover {
+            background: #107a39;
+        }
+
+
+        /* =====================================
+           CARRITO VACÍO
+        ===================================== */
+
+        .empty {
+            display: none;
+
+            text-align: center;
+
+            padding: 40px;
+
+            color: #777;
+        }
+
+
+        /* =====================================
+           RESPONSIVE
+        ===================================== */
+
+        @media (max-width: 750px) {
+
+            .navbar {
+                padding: 0 15px;
+            }
+
+            .search {
+                display: none;
+            }
+
+            .container {
+                width: 94%;
+            }
+
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .product {
+                flex-wrap: wrap;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         NAVBAR
+    ====================================== -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <img src= "logo.jpeg" alt="">
+            <span> AGRO AYUDA</span>
+        </div>
+
+
+        <input
+            type="text"
+            class="search"
+            placeholder="Buscar productos, categorías..."
+        >
+
+
+        <div class="right-nav">
+
+            <span class="nav-icon">
+                🛒
+            </span>
+
+            <span class="nav-icon">
+                🔔
+            </span>
+
+            <div class="user">
+                👤
+            </div>
+
+        </div>
+
+    </nav>
+
+
+
+    <!-- =====================================
+         CONTENIDO
+    ====================================== -->
+
+    <main class="container">
+
+
+        <!-- ENCABEZADO -->
+
+        <div class="header">
+
+            <h1>
+                Mi carrito (3)
+            </h1>
+
+            <a href="#">
+                Vaciar carrito
+            </a>
+
+        </div>
+
+
+
+        <!-- CONTENIDO -->
+
+        <div class="content">
+
+
+            <!-- =================================
+                 PRODUCTOS
+            ================================== -->
+
+            <section class="cart">
+
+
+                <!-- TOMATE -->
+
+                <div
+                    class="product"
+                    id="tomate"
+                >
+
+                    <img
+                        class="product-img"
+                        src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=200&q=80"
+                        alt="Tomate chonto"
+                    >
+
+
+                    <div class="product-info">
+
+                        <div class="product-name">
+                            Tomate chonto
+                        </div>
+
+                        <div class="product-unit">
+                            $2.500 / kg
+                        </div>
+
+                        <div
+                            class="product-price"
+                            id="precio-tomate"
+                        >
+                            $2.500
+                        </div>
+
+                    </div>
+
+
+                    <div class="quantity">
+
+                        <button onclick="cambiar('tomate', -1)">
+                            −
+                        </button>
+
+                        <span id="cantidad-tomate">
+                            1
+                        </span>
+
+                        <button onclick="cambiar('tomate', 1)">
+                            +
+                        </button>
+
+                    </div>
+
+
+                    <button
+                        class="delete"
+                        onclick="eliminar('tomate')"
+                    >
+                        🗑
+                    </button>
+
+                </div>
+
+
+
+                <!-- LECHUGA -->
+
+                <div
+                    class="product"
+                    id="lechuga"
+                >
+
+                    <img
+                        class="product-img"
+                        src="LECHUGA-VERDE-LISA.png"
+                        alt="Lechuga"
+                    >
+
+
+                    <div class="product-info">
+
+                        <div class="product-name">
+                            Lechuga
+                        </div>
+
+                        <div class="product-unit">
+                            $1.800 / unidad
+                        </div>
+
+                        <div
+                            class="product-price"
+                            id="precio-lechuga"
+                        >
+                            $1.800
+                        </div>
+
+                    </div>
+
+
+                    <div class="quantity">
+
+                        <button onclick="cambiar('lechuga', -1)">
+                            −
+                        </button>
+
+                        <span id="cantidad-lechuga">
+                            1
+                        </span>
+
+                        <button onclick="cambiar('lechuga', 1)">
+                            +
+                        </button>
+
+                    </div>
+
+
+                    <button
+                        class="delete"
+                        onclick="eliminar('lechuga')"
+                    >
+                        🗑
+                    </button>
+
+                </div>
+
+
+
+                <!-- ZANAHORIA -->
+
+                <div
+                    class="product"
+                    id="zanahoria"
+                >
+
+                    <img
+                        class="product-img"
+                        src="https://images.unsplash.com/photo-1445282768818-728615cc910a?auto=format&fit=crop&w=200&q=80"
+                        alt="Zanahoria"
+                    >
+
+
+                    <div class="product-info">
+
+                        <div class="product-name">
+                            Zanahoria
+                        </div>
+
+                        <div class="product-unit">
+                            $1.200 / kg
+                        </div>
+
+                        <div
+                            class="product-price"
+                            id="precio-zanahoria"
+                        >
+                            $1.200
+                        </div>
+
+                    </div>
+
+
+                    <div class="quantity">
+
+                        <button onclick="cambiar('zanahoria', -1)">
+                            −
+                        </button>
+
+                        <span id="cantidad-zanahoria">
+                            1
+                        </span>
+
+                        <button onclick="cambiar('zanahoria', 1)">
+                            +
+                        </button>
+
+                    </div>
+
+
+                    <button
+                        class="delete"
+                        onclick="eliminar('zanahoria')"
+                    >
+                        🗑
+                    </button>
+
+                </div>
+
+
+
+                <!-- CARRITO VACÍO -->
+
+                <div
+                    class="empty"
+                    id="empty"
+                >
+
+                    🛒
+
+                    <h3>
+                        Tu carrito está vacío
+                    </h3>
+
+                    <p>
+                        Agrega productos para comenzar tu compra.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================
+                 RESUMEN
+            ================================== -->
+
+            <aside class="summary">
+
+                <h2>
+                    Resumen de compra
+                </h2>
+
+
+                <div class="row">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span id="subtotal">
+                        $5.500
+                    </span>
+
+                </div>
+
+
+                <div class="row">
+
+                    <span>
+                        Envío
+                    </span>
+
+                    <span>
+                        $4.500
+                    </span>
+
+                </div>
+
+
+                <div class="row total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span
+                        class="total-price"
+                        id="total"
+                    >
+                        $10.000
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="checkout"
+                    onclick="continuar()"
+                >
+                    Continuar con la compra
+                </button>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script>
+
+        /* Productos */
+
+        let productos = {
+
+            tomate: {
+                precio: 2500,
+                cantidad: 1
+            },
+
+            lechuga: {
+                precio: 1800,
+                cantidad: 1
+            },
+
+            zanahoria: {
+                precio: 1200,
+                cantidad: 1
+            }
+
+        };
+
+
+        const envio = 4500;
+
+
+
+        /* =====================================
+           CAMBIAR CANTIDAD
+        ===================================== */
+
+        function cambiar(nombre, cantidad) {
+
+            productos[nombre].cantidad += cantidad;
+
+
+            if (productos[nombre].cantidad < 1) {
+
+                productos[nombre].cantidad = 1;
+
+            }
+
+
+            document.getElementById(
+                "cantidad-" + nombre
+            ).textContent =
+                productos[nombre].cantidad;
+
+
+            actualizarPrecio(nombre);
+
+            actualizarResumen();
+
+        }
+
+
+
+        /* =====================================
+           ACTUALIZAR PRECIO PRODUCTO
+        ===================================== */
+
+        function actualizarPrecio(nombre) {
+
+            let producto = productos[nombre];
+
+            let precio =
+                producto.precio *
+                producto.cantidad;
+
+
+            document.getElementById(
+                "precio-" + nombre
+            ).textContent =
+                "$" + precio.toLocaleString("es-CO");
+
+        }
+
+
+
+        /* =====================================
+           ACTUALIZAR RESUMEN
+        ===================================== */
+
+        function actualizarResumen() {
+
+            let subtotal = 0;
+
+            let cantidad = 0;
+
+
+            for (let nombre in productos) {
+
+                subtotal +=
+                    productos[nombre].precio *
+                    productos[nombre].cantidad;
+
+                cantidad +=
+                    productos[nombre].cantidad;
+
+            }
+
+
+            document.getElementById(
+                "subtotal"
+            ).textContent =
+                "$" + subtotal.toLocaleString("es-CO");
+
+
+            document.getElementById(
+                "total"
+            ).textContent =
+                "$" +
+                (subtotal + envio)
+                .toLocaleString("es-CO");
+
+
+            document.querySelector(
+                ".header h1"
+            ).textContent =
+                "Mi carrito (" + cantidad + ")";
+
+        }
+
+
+
+        /* =====================================
+           ELIMINAR PRODUCTO
+        ===================================== */
+
+        function eliminar(nombre) {
+
+            document.getElementById(
+                nombre
+            ).remove();
+
+
+            delete productos[nombre];
+
+
+            actualizarResumen();
+
+
+            if (
+                Object.keys(productos).length === 0
+            ) {
+
+                document.getElementById(
+                    "empty"
+                ).style.display = "block";
+
+            }
+
+        }
+
+
+
+        /* =====================================
+           CONTINUAR COMPRA
+        ===================================== */
+
+        function continuar() {
+
+            if (
+                Object.keys(productos).length === 0
+            ) {
+
+                alert(
+                    "Tu carrito está vacío."
+                );
+
+                return;
+
+            }
+
+
+            alert(
+                "Continuando con el proceso de compra..."
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>
