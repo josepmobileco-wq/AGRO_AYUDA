@@ -81,3 +81,8 @@ input[type="email"], input[type="text"], .pass input { padding: 11px 12px; borde
 .product-header button { background-color: var(--primary-green); color: white; border: none; width: 24px; height: 24px; border-radius: 50%; font-size: 1rem; line-height: 1; cursor: pointer; display: flex; align-items: center; justify-content: center; }
 .product-info .price { font-size: 0.85rem; font-weight: 700; color: var(--primary-green); }
 .product-info .location { font-size: 0.75rem; color: var(--text-muted); }
+
+.pago-tarjeta { background: white; border-radius: 16px; padding: 25px; max-width: 400px; width: 100%; display: flex; flex-direction: column; gap: 10px; }
+.pago-opcion { border: 1px solid #ddd; border-radius: 10px; padding: 12px; display: flex; gap: 8px; cursor: pointer; }
+.pago-opcion.elegida { border-color: #1B7A3D; background: #E8F5E9; }
+.pago-total { font-weight: bold; color: #1B7A3D; font-size: 1.1rem; display: flex; justify-content: space-between; }
