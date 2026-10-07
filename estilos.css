@@ -133,3 +133,25 @@ body { background: var(--bg-page); color: var(--text-dark); min-height: 100vh; p
 .det-qty { display: flex; align-items: center; border: 1px solid #ddd; border-radius: 8px; }
 .det-qty button { width: 38px; height: 40px; border: none; background: #f4f4f4; cursor: pointer; }
 @media (max-width: 800px) { .det-card { grid-template-columns: 1fr; } .det-search { display: none; } }
+
+/* ===== SEGUIMIENTO (prefijo seg-) pantalla 6 ===== */
+.seg-page { width: 100%; max-width: 700px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.seg-top { display: flex; justify-content: space-between; align-items: center; background: #fff; border-radius: 12px; padding: 12px 18px; }
+.seg-brand { display: flex; align-items: center; gap: 8px; font-weight: 800; color: #0b7b48; }
+.seg-brand img { height: 30px; }
+.seg-topicons { display: flex; gap: 12px; font-size: 1.2rem; }
+.seg-card { background: #fff; border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.06); }
+.seg-titlerow { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.seg-badge { background: #eaf6ed; color: #0b7b48; font-size: 0.75rem; font-weight: 700; padding: 6px 12px; border-radius: 20px; white-space: nowrap; }
+.seg-map { background: #eef7f0; border-radius: 12px; padding: 26px 16px; text-align: center; display: flex; flex-direction: column; gap: 8px; }
+.seg-truck { font-size: 2.2rem; }
+.seg-route { letter-spacing: 2px; color: #0b7b48; font-weight: bold; }
+.seg-map small { color: #6b7280; }
+.seg-driver { display: flex; gap: 12px; align-items: center; border: 1px solid #e5e7eb; border-radius: 12px; padding: 12px; }
+.seg-avatar { font-size: 2rem; background: #eaf6ed; border-radius: 50%; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; }
+.seg-stars { margin-left: auto; color: #f5a623; font-weight: bold; }
+.seg-timeline { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.seg-timeline li { display: flex; gap: 8px; align-items: center; color: #9ca3af; }
+.seg-timeline li.done { color: #0b7b48; font-weight: 600; }
+.seg-timeline li.now { background: #eaf6ed; border-radius: 8px; padding: 6px 10px; }
+.seg-timeline li span { margin-left: auto; font-size: 0.75rem; color: #9ca3af; }
